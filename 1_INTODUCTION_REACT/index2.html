@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ch_2_Create a React App</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <navn class="nav-bar">
+      <a href="#7">Create a React App</a>
+      <a href="#8">7. What is IDE</a>
+      <a href="#9">9. Project Structure</a>
+      <a href="#10">10. File Extensions</a>
+      <a href="#11">11. Class vs Function Components</a>
+      <a href="#12">12. What is JSX?</a>
+      <a href="#13">13. Exporting components</a>
+      <a href="#14">14. Other important Points</a>
+      <a href="#15">15. Dynamic Components</a>
+      <a href="#16">16. Reusable Components</a>
+    </nav>
+  </header>
+  <main>
+    <pre>
+      <b class="bold">Create a React App</b>
+
+        <img src="images/image025.png">
+
+      7. Setup IDE
+      8. Create a React App
+      9. Project Structure
+
+
+      <b id="7" class="bold">7. What is IDE</b>
+
+                <img src="images/image026.png" class="center">
+
+      1. IDE stands for Integrated Development Environment.
+      2. Software suite that consolidates basic tools required for software development.
+      3. Central hub for coding, finding problems, and testing.
+      4. Designed to improve developer efficiency.
+                  <b class="bold">7. Need of IDE</b>
+
+                  <img src="images/image027.jpg" class="center">
+
+                  1. Streamlines development.
+                  2. Increases productivity.
+                  3. Simplifies complex tasks.
+                  4. Offers a unified workspace.
+                  5. IDE Features
+                  1. Code Autocomplete
+                  2. Syntax Highlighting
+                  3. Version Control
+                  4. Error Checking
+
+                  <b class="bold">7. Install latest Node</b>
+
+                  <img src="images/image028.png" class="image">
+
+      <b id="8" class="bold">8. Create a React App</b>
+
+      <img src="images/image032.png" class="image" ><img src="images/image033.jpg" class="image" >
+      
+
+      1. Official tool is CRA(Create React APP)
+      2. Vite is a modern tool to create React Project.
+      3. Vite produces Quick and Small bundle size.
+      4. Vite: Use npm run dev to launch dev server.
+      5. Use npm start for CRA.
+
+      <b id="9" class="bold">9. Project Structure</b>
+
+      <img src="images/image035.jpg" class="center">
+
+      1. node_modules/ has all the installed node packages
+      2. public/ Directory: Contains static files that don't change.
+      3. src/ Directory: Main folder for the React code.
+      1. components/: Reusable parts of the UI, like buttons or headers.
+      2. assets/: Images, fonts, and other static files.
+      3. styles/: CSS or stylesheets.
+      4. package.json contains information about this project like name, version, dependencies on other react packages.
+      5. vite.config.js contains vite config
+
+      <b class="bold">Creating React Components</b>
+
+      <img src="images/image036.jpg" class="center">
+
+              10.File Extensions
+              11. Class vs Function Components
+              12.What is JSX?
+              13.Exporting component
+              14.Other important Points
+              15.Dynamic Components
+              16.Reusable Components
+
+          <b id="10" class="bold">10. File Extensions</b>
+
+          <img src="images/image038.jpg" class="center">
+
+          <span>.JS</span>
+          • Stands for JavaScript
+          • Contains regular JavaScript code
+          • Used for general logic and components.
+          
+          <span>.JSX</span>
+          • Stands for JavaScript XML
+          • Combines JavaScript with HTML-like tags.
+          • Makes it easier to design UI components.
+          
+
+
+      <b id="11" class="bold">11. Class vs Function Components</b>
+      
+      <img src="images/image039.png" class="center">
+
+            <span>Class Components</span>
+
+            // NOT used much nowadays
+
+                • Stateful: Can manage state.
+                • Lifecycle: Access to lifecycle methods.
+                • Verbose: More boilerplate code.
+                • Not Preferred anymore.
+
+            <span>Functional Components</span>
+
+            // Used nowadays 
+
+                • Initially stateless. 
+                • Can use Hooks for state and effects.
+                • Simpler and more concise.
+                • More Popular.
+          
+      <b id="12" class="bold">12. What is JSX?</b>   
+      
+      <img src="images/image040.png" class="center">
+
+      1. Definition: JSX determines how the UI will look wherever the component is used.
+      2. Not HTML: Though it resembles HTML, you're actually writing JSX, which stands for JavaScript XML.
+      3. Conversion: JSX gets converted to regular JavaScript.
+      4. Babeljs.io/repl is a tool that allows you to see how JSX is transformed into JavaScript.
+
+
+      <b id="13" class="bold">13.Exporting component</b>       
+
+      <img src="images/image041.png"><img src="images/image042.png" class="center">
+
+      1. Enables the use of a component in other parts.
+      2. Default Export: Allows exporting a single component as the default from a module.
+      3. Named Export: Allows exporting multiple items from a module.
+      4. Importing: To use an exported component, you need to import it in the destination file using import syntax.
+
+      <b id="14" class="bold">14.Other important Points</b>    
+      
+      <img src="images/image043.png" class="center">
+      
+      1. Naming: Must be capitalized;  lowercase for default HTML.
+          
+      2. HTML: Unlike vanilla JS where you can't directly write HTML, in React, you can embed HTML-like syntax using JSX.
+      
+      3. CSS: In React, CSS can be directly imported into component files, allowing for modular and component-specific styling.
+
+
+      <b id="15" class="bold">15.Dynamic Components</b>   
+      
+      <img src="images/image044.png" class="center">
+
+      1. Dynamic Content: JSX allows the creation of dynamic and interactive UI components.
+      2. JavaScript Expressions: Using {}, we can embed any JS expression directly within     JSX. This includes variables, function calls, and more.
+      
+
+      <b id="16" class="bold">16.Reusable Components</b>  
+      
+      <img src="images/image045.png">
+
+      1. Modularity: Components are modular, allowing for easy reuse across different parts of an application.
+      2. Consistency: Reusing components ensures UI consistency and reduces the chance of discrepancies.
+      3. Efficiency: Reduces development time and effort by avoiding duplication of code.
+      4. Maintainability: Changes made to a reused component reflect everywhere it's used, simplifying updates and bug fixes.
+      
+
+    </pre>
+  </main>
+  <footer>
+    “Get it in while you can. It'll all be gone soon enough.”
+  </footer>
+</body>
+</html>
