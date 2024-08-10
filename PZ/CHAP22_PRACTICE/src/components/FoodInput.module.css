@@ -1,0 +1,9 @@
+.foodInput {
+  width: 98%;
+  padding: 5px;
+  margin: 10px 5px;
+}
+
+.spaceButton{
+  float: right;
+}
