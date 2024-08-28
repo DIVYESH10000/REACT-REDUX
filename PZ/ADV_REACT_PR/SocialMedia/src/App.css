@@ -1,0 +1,40 @@
+.app-container {
+  display: flex;
+}
+
+.content{
+  width: 100%;
+}
+.content footer {
+  position: fixed;
+  bottom: 0px;
+}
+
+.sidebar {
+  min-height: 920px;
+
+}
+.createPost{
+  margin: 50px;
+  width: 50%;
+}
+.postCard {
+  margin: 20px 50px;
+}
+
+.reactions{
+  position: absolute;
+  bottom: 30px; 
+  right: 15px;  
+  font-size: 10px;
+}
+.welcomeMessage {
+  margin: 40px;
+}
+.getPostButton {
+  width: 350px;
+  margin: 50px;
+}
+.spinner{
+  margin: 10% 0%;
+}

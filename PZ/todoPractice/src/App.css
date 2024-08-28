@@ -1,0 +1,23 @@
+h1 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+}
+
+.spaceRow {
+  margin: 10px 5px;
+}
+
+.actionButton {
+  min-width: 100px;
+}
+
+.delTodoButt {
+  min-width: 100px;
+  margin-left: 48px;
+}
