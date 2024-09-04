@@ -1,12 +1,16 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import { PostList as PostListData } from "../store/post-list-store";
-import WelcomeMeasage from "./WelcomeMessage";
+import WelcomeMessage from "./WelcomeMeassage";
+import LoadingSpinner from "./LoadingSpinner";
 
 const PostList = () => {
   const { postList, addInitialPosts } = useContext(PostListData);
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
+    setFetching(true);
+
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -14,20 +18,28 @@ const PostList = () => {
       .then((res) => res.json())
       .then((data) => {
         addInitialPosts(data.posts);
+        setFetching(false);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") {
+          console.log(`Fetch aborted`);
+        } else {
+          console.error(`Fetch error:`, error);
+        }
       });
 
     return () => {
-      controller.abort;
+      console.log(`Cleaning up useEffect`);
+      controller.abort();
     };
   }, []);
 
   return (
     <>
-      {postList.length === 0 && <WelcomeMeasage />}
-
-      {postList.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+      {fetching && <LoadingSpinner />}
+      {!fetching && postList.length === 0 && <WelcomeMessage />}
+      {!fetching &&
+        postList.map((post) => <Post key={post.id} post={post}></Post>)}
     </>
   );
 };

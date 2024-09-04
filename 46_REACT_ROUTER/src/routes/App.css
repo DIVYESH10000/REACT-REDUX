@@ -1,0 +1,60 @@
+.app-container {
+  display: flex;
+}
+
+.content {
+  width: 100%;
+}
+
+.sidebar {
+  min-height: 800px;
+}
+
+.postCard {
+  margin: 20px 50px;
+}
+
+.hashTag {
+  margin: 0px 3px;
+}
+
+.reactions {
+  position: absolute;
+  bottom: 30px;
+  right: 15px;
+  font-size: 10px;
+}
+
+.createPost {
+  width: 50%;
+  margin-top: 50px;
+  margin: 10%;
+}
+.welcomeMeassage {
+  margin: 100px 0px;
+}
+.spinner {
+  margin: 10% 0%;
+}
+.like {
+  border: none;
+  background-color: white;
+
+  /* transition property */
+  transition: all;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0s;
+}
+
+.like :hover {
+  size: 90px;
+  height: 50px;
+  width: 40px;
+}
+
+.like :active {
+  size: 90px;
+  height: 50px;
+  width: 40px;
+}

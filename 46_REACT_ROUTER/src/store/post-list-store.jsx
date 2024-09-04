@@ -1,10 +1,11 @@
-import { useCallback } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { createContext, useReducer } from "react";
+import { useActionData } from "react-router-dom";
 
 export const PostList = createContext({
   postlist: [],
   addPost: () => {},
-  addInitialPosts: () => {},
+  // fetching: false,
   deletePost: () => {},
 });
 
@@ -16,7 +17,7 @@ const postListReducer = (currPostList, action) => {
       (post) => post.id !== action.payload.postId
     );
   } else if (action.type === "ADD_POST") {
-    newPostList = [action.payload, ...currPostList];
+    newPostList = [action.payload.post, ...currPostList];
   } else if (action.type === "ADD_INITIAL_POSTS") {
     newPostList = action.payload.posts;
   }
@@ -27,17 +28,20 @@ const postListReducer = (currPostList, action) => {
 const PostListProvider = ({ children }) => {
   const [postList, dispatchPostList] = useReducer(postListReducer, []);
 
+  // const [fetching, setFetching] = useState(false);
+
   // AddPost
-  const addPost = (userId, postTitle, postBody, reactions, tags) => {
+  const addPost = (post) => {
     dispatchPostList({
       type: "ADD_POST",
       payload: {
-        id: Date.now(),
-        title: postTitle,
-        body: postBody,
-        reactions: reactions,
-        tags: tags,
-        userId: userId,
+        post,
+        // id: Date.now(),
+        // title: postTitle,
+        // body: postBody,
+        // reactions: reactions,
+        // tags: tags,
+        // userId: userId,
       },
     });
   };
@@ -60,18 +64,44 @@ const PostListProvider = ({ children }) => {
     [dispatchPostList]
   );
 
-  // Example of useMemo() hook
+  // useEffect(() => {
+  //   setFetching(true);
 
-  const arr = [5, 6, 7, 8123, 456, 66];
-  const sortedArr = useMemo(arr.sort(), [arr]);
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  // Not Needed as we're using Loder functionality
+
+  // fetch("https://dummyjson.com/posts", { signal })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     addInitialPosts(data.posts);
+  //     setFetching(false);
+  //   })
+  //   .catch((error) => {
+  //     if (error.name === "AbortError") {
+  //       console.log(`Fetch aborted`);
+  //     } else {
+  //       console.error(`Fetch error:`, error);
+  //     }
+  //   });
+
+  //   return () => {
+  //     // console.log(`Cleaning up useEffect`);
+  //     controller.abort();
+  //   };
+  // }, []);
 
   return (
-    <PostList.Provider
-      value={{ postList, addPost, addInitialPosts, deletePost }}
-    >
+    <PostList.Provider value={{ postList, addPost, deletePost }}>
       {children}
     </PostList.Provider>
   );
 };
 
 export default PostListProvider;
+
+// Example of useMemo() hook
+
+// const arr = [5, 6, 7, 8123, 456, 66];
+// const sortedArr = useMemo(arr.sort(), [arr]);

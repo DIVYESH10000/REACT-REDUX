@@ -1,39 +1,47 @@
 import { useContext } from "react";
-import { useRef } from "react";
+// import { useRef } from "react";
 import { PostList } from "../store/post-list-store";
+// import { useNavigate } from "react-router-dom";
+
+import { Form, redirect } from "react-router-dom";
 
 const CreatePost = () => {
-  const { addPost } = useContext(PostList);
+  // const { addPost } = useContext(PostList);
+  // const navigate = useNavigate();
 
-  const userIdElement = useRef();
-  const postTitleElement = useRef();
-  const postBodyElement = useRef();
-  const reactionsElement = useRef();
-  const tagsElement = useRef();
+  // const userIdElement = useRef();
+  // const postTitleElement = useRef();
+  // const postBodyElement = useRef();
+  // const reactionsElement = useRef();
+  // const tagsElement = useRef();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const userId = userIdElement.current.value;
-    const postTitle = postTitleElement.current.value;
-    const postBody = postBodyElement.current.value;
-    const reactions = reactionsElement.current.value;
-    const tags = tagsElement.current.value.split(/\s+/);
-
-    addPost(userId, postTitle, postBody, reactions, tags);
-  };
+  // const handleSubmit = (event) => {
+  // event.preventDefault();
+  // const userId = userIdElement.current.value;
+  // const postTitle = postTitleElement.current.value;
+  // const postBody = postBodyElement.current.value;
+  // const reactions = reactionsElement.current.value;
+  // const tags = tagsElement.current.value.split(/\s+/);
+  // userIdElement.current.value = "";
+  // postTitleElement.current.value = "";
+  // postBodyElement.current.value = "";
+  // reactionsElement.current.value = "";
+  // tagsElement.current.value = "";
+  // addPost(userId, postTitle, postBody, reactions, tags);
+  // };
 
   return (
-    <form className="createPost" onSubmit={handleSubmit}>
+    <Form method="POST" className="createPost">
       <div className="mb-3">
         <label htmlFor="userId" className="form-label">
           Enter your User Id here
         </label>
         <input
-          ref={userIdElement}
+          // ref={userIdElement}
           type="text"
           className="form-control"
           id="userId"
+          name="userId"
           placeholder="Username"
         />
       </div>
@@ -42,10 +50,11 @@ const CreatePost = () => {
           Post Title
         </label>
         <input
-          ref={postTitleElement}
+          // ref={postTitleElement}
           type="text"
           className="form-control"
           id="title"
+          name="title"
           placeholder="How are you feeling today ?"
         />
       </div>
@@ -54,11 +63,12 @@ const CreatePost = () => {
           Post Content
         </label>
         <textarea
-          ref={postBodyElement}
+          // ref={postBodyElement}
           rows="4"
           type="text"
           className="form-control"
           id="body"
+          name="body"
           placeholder="Tell us more about it..."
         />
       </div>
@@ -67,10 +77,11 @@ const CreatePost = () => {
           No. of reactions
         </label>
         <input
-          ref={reactionsElement}
+          // ref={reactionsElement}
           type="number"
           className="form-control"
           id="reactions"
+          name="reactions"
           placeholder="Reactions"
         />
       </div>
@@ -79,19 +90,54 @@ const CreatePost = () => {
           Enter your hashtags here
         </label>
         <input
-          ref={tagsElement}
+          // ref={tagsElement}
           type="text"
           className="form-control"
           id="tags"
+          name="tags"
           placeholder="Please enter your tags using space"
         />
       </div>
       <button type="submit" className="btn btn-primary">
         Post
       </button>
-    </form>
+    </Form>
   );
 };
+
+//By default action function gets a -----> data Object
+export async function createPostAction(data) {
+  const { addPost } = useContext(PostList);
+  // How to get the data, using an async method data.request.formData()
+  // instead of .then we can use async awaits also.
+  // whenever we use await we must declare the function as async function
+
+  //-------------------------- Important --------------------------------------------------//
+  const formData = await data.request.formData();
+  const postData = Object.fromEntries(formData);
+  postData.tags = postData.tags.split(" ");
+  console.log(postData);
+
+  fetch("https://dummyjson.com/posts/add", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(postData),
+    // JSON.stringify({
+    //   title: postTitle,
+    //   body: postBody,
+    //   reactions: { likes: reactions },
+    //   userId: userId,
+    //   tags: tags,
+    // }),
+  })
+    .then((res) => res.json())
+    .then((post) => {
+      console.log(post);
+
+      // navigate("/"); // Can provide any path
+    });
+  return redirect("/");
+}
 
 export default CreatePost;
 
