@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import { PostList as PostListData } from "../store/post-list-store";
-import WelcomeMessage from "./WelcomeMeassage";
+import WelcomeMessage from "../components/WelcomeMessage.jsx";
 import LoadingSpinner from "./LoadingSpinner";
 
 const PostList = () => {
